@@ -254,4 +254,32 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
+  const button = document.getElementById('noPet');
+  const tooltip = document.getElementById('noPetTooltip');
+    
+    // Определение мобильного устройства
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      // Для мобильных устройств: показ тултипа по клику
+      button.addEventListener('click', () => {
+        tooltip.classList.toggle('visible');
+      });
+
+      // Скрытие тултипа, если нажали вне кнопки
+      document.addEventListener('click', (event) => {
+        if (!button.contains(event.target)) {
+          tooltip.classList.remove('visible');
+        }
+      });
+    } else {
+      // Для десктопов: показ тултипа при наведении
+      button.addEventListener('mouseenter', () => {
+        tooltip.classList.add('visible');
+      });
+
+      button.addEventListener('mouseleave', () => {
+        tooltip.classList.remove('visible');
+      });
+    }
 })
