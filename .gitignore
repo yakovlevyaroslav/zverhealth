@@ -1,0 +1,106 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python files
+*.py[cod]
+*.pyo
+*.pyd
+__pycache__/
+*.so
+*.egg
+*.egg-info/
+.eggs/
+*.swp
+
+# Virtual environments
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Django specific files
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
+/media/
+/staticfiles/
+
+# Node.js specific
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Log files
+*.log
+*.out
+*.log.*
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# VSCode specific files
+.vscode/
+
+# PyCharm specific files
+.idea/
+*.iml
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/dictionaries
+.idea/vcs.xml
+.idea/jsLibraryMappings.xml
+
+# Other editors and IDEs
+*.sublime-project
+*.sublime-workspace
+
+# Testing artifacts
+.cache/
+pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+
+# Distribution / packaging
+*.egg-info/
+.installed.cfg
+*.egg
+.eggs/
+dist/
+build/
+*.wheel
+*.manifest
+*.spec
+
+# Byte-compiled / optimized files
+*.py[cod]
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# IDE specific files
+.idea/
+.vscode/
