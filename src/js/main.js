@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function () {
         formData.append('profession', profession.name);
     
         // Отправляем POST-запрос
-        fetch('/your-endpoint-url', {
+        fetch('/', {
           method: 'POST',
           body: formData
         })

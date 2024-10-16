@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подтверждение изображения</title>
+</head>
+<body>
+    <h1>Проверьте изображение!</h1>
+    <img src="{{ cat_image.image.url }}" alt="Изображение кота">
+    <a href="{% url 'publish' cat_image.id %}">Опубликовать</a>
+</body>
+</html>

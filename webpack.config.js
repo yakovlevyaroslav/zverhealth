@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/js/index.js',
   output: {
     filename: 'js/[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'static/dist'),
     assetModuleFilename: 'images/[hash][ext][query]',
     clean: true,
   },
@@ -15,7 +15,7 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'static/dist'),
     },
     compress: true,
     port: 9000,

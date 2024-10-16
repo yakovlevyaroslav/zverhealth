@@ -104,3 +104,5 @@ build/
 # IDE specific files
 .idea/
 .vscode/
+
+webpack-stats.json

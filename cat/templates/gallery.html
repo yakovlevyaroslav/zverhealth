@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Галерея котов</title>
+</head>
+<body>
+    <h1>Галерея котов</h1>
+    {% for image in published_images %}
+        <img src="{{ image.image.url }}" alt="Изображение кота">
+    {% endfor %}
+</body>
+</html>
