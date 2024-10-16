@@ -15,32 +15,27 @@ def index(request):
     if request.method == 'POST':
         # Получение файла изображения
         image = request.FILES.get('image')
-
+        prompt = request.POST.get('prompt')
         # Создание объекта CatImage
         cat_image = CatImage.objects.create(image=image)
 
         # Вызов API GenApi
-        input_ai = {
-            "prompt": 'Сделай из этого кота - кота программиста у которого на фоне много компьютеров и в лапах телефон',
-            'implementation': 'sdxl-controlnet',
-        }
         headers = {
             'Accept': 'application/json',
             'Authorization': f'Bearer {config.API_AI_KEY}',
         }
         url_endpoint = "https://api.gen-api.ru/api/v1/functions/replace-background"
 
-        logging.info(f'Sending request to {url_endpoint} with data: {input_ai}')
-
         response = requests.post(
             url_endpoint,
             files={
-                'prompt': (None, input_ai['prompt']),  # Передача 'prompt' как текста
-                'implementation': (None, input_ai['implementation']),  # Передача 'implementation' как текста
+                'prompt': prompt,  # Передача 'prompt' как текста
+                'implementation': 'sdxl-controlnet',  # Передача 'implementation' как текста
                 'image': open(cat_image.image.path, 'rb'),  # Передача файла 'image'
             },
             headers=headers
         )
+        logging.info(f'Sending request to {url_endpoint} with data: {response}')
 
         print(response.json())
 
