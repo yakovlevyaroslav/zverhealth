@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Добавляем файл
         const file = fileInput.files[0];
         if (file) {
-          formData.append('file', file);
+          formData.append('image', file);
         } else {
           console.error('Файл не выбран');
           return; // Прерываем выполнение, если файл не выбран
@@ -238,11 +238,14 @@ document.addEventListener('DOMContentLoaded', function () {
         // Добавляем значение поля promptText
         // formData.append('prompt', promptText.value);
         formData.append('prompt', 'View from the window to the business center, computers in the office, office furniture, sunny day, successful life');
-    
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
         // Отправляем POST-запрос
         fetch('/', {
           method: 'POST',
-          body: formData
+          body: formData,
+          headers: {
+            'X-CSRFToken': csrftoken // Добавляем токен в заголовок
+          }
         })
         .then(response => response.json())
         .then(data => {

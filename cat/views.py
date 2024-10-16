@@ -17,25 +17,29 @@ def index(request):
         image = request.FILES.get('image')
         prompt = request.POST.get('prompt')
         # Создание объекта CatImage
-        cat_image = CatImage.objects.create(image=image)
 
         # Вызов API GenApi
+        input_ai = {
+            "prompt": prompt,
+            'implementation': 'sdxl-controlnet',
+        }
         headers = {
             'Accept': 'application/json',
             'Authorization': f'Bearer {config.API_AI_KEY}',
         }
         url_endpoint = "https://api.gen-api.ru/api/v1/functions/replace-background"
 
+        logging.info(f'Sending request to {url_endpoint} with data: {input_ai}')
+
         response = requests.post(
             url_endpoint,
             files={
-                'prompt': prompt,  # Передача 'prompt' как текста
-                'implementation': 'sdxl-controlnet',  # Передача 'implementation' как текста
-                'image': open(cat_image.image.path, 'rb'),  # Передача файла 'image'
+                'prompt': (None, input_ai['prompt']),  # Передача 'prompt' как текста
+                'implementation': (None, input_ai['implementation']),  # Передача 'implementation' как текста
+                'image': image,  # Передача файла 'image'
             },
             headers=headers
         )
-        logging.info(f'Sending request to {url_endpoint} with data: {response}')
 
         print(response.json())
 
@@ -54,11 +58,14 @@ def index(request):
                     logging.info(f'Status: {status}')
                     if status == 'success':
                         edited_image_url = get_response.json()['result'][0]
+                        print(edited_image_url)
                         logging.info(f'Output URL: {edited_image_url}')
 
                         # Сохранение отредактированного изображения
                         response = requests.get(edited_image_url, stream=True)
+                        cat_image = CatImage.objects.create()
                         cat_image.image.save(f'edited_{cat_image.id}.jpg', response.raw)
+                        print(f'Сохранено: {cat_image.image}')
                         # Отображение результата на странице
                         return render(request, 'index.html', {'edited_image': cat_image.image.url, 'error': None})
                     elif status == 'error':
