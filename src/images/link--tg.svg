@@ -1,0 +1,30 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_298_437)">
+<g clip-path="url(#clip1_298_437)">
+<g clip-path="url(#clip2_298_437)">
+<mask id="mask0_298_437" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+<path d="M0 0H24V24H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_298_437)">
+<path d="M12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76515 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0C8.8174 0 5.76515 1.26428 3.51472 3.51472C1.26428 5.76515 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76515 22.7357 8.8174 24 12 24Z" fill="url(#paint0_linear_298_437)"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M5.3999 11.9C9.24929 10.291 13.1162 8.72422 16.9999 7.19995C17.0999 7.19995 17.2999 7.19995 17.4999 7.39995L17.5999 7.69995V8.19995C17.4999 10.1 16.6999 14.7 16.2999 16.8C16.0999 17.7 15.7999 18 15.4999 18C14.7999 18 14.2999 17.6 13.4999 17.1L10.8999 15.3C9.6999 14.5 10.4999 14.1 11.1999 13.4L14.4999 10.2V9.99995H13.9999C13.8999 9.99995 12.1999 11 8.8999 13.3C8.3999 13.6 7.8999 13.8 7.5999 13.8C7.1999 13.8 6.2999 13.5 5.6999 13.3C4.9999 13.1 4.3999 13 4.3999 12.5C4.3999 12.3 4.7999 12.1 5.3999 11.9Z" fill="#080808"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<linearGradient id="paint0_linear_298_437" x1="0" y1="12" x2="24" y2="12" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+<clipPath id="clip0_298_437">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+<clipPath id="clip1_298_437">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+<clipPath id="clip2_298_437">
+<rect width="24" height="24" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpack Project</title>
+</head>
+<body>
+  <section class="main">
+    <div class="container">
+      <div class="logo"></div>
+      <div class="hello"></div>
+      <div class="main__title">
+        Для животных профориентационных тестов раньше не было, а мы придумали!
+      </div>
+      <button class="main__btn btn btn_pink">
+        Поможем твоему питомцу определиться с IT-профессией.
+      </button>
+
+      <div class="bg-image bg-image_star"></div>
+      <div class="bg-image bg-image_snake"></div>
+    </div>
+  </section>
+
+  <section class="photo">
+    <div class="container">
+      <div class="photo__title">
+        Посмотрим, <br>
+        кто тут у нас?
+      </div>
+      <form class="form">
+        <div class="form__subtitle">
+          Загрузи фото своего или чужого питомца
+        </div>
+        <div class="form__image" id="imageBlock"></div>
+        <div class="form__title">
+          Как зовут твоего питомца?
+        </div>
+        
+        <!-- Скрытый input для загрузки изображения -->
+        <input type="file" id="fileInput" accept="image/*" />
+
+        <div class="form__name">
+          <input type="text" autocomplete="off" class="form__name-input" id="nameInput" placeholder="Имя">
+          <button disabled class="btn form__name-submit" id="nameInputBtn"></button>
+        </div>
+      </form>
+      <div class="photo__btn btn btn_pink">
+        У меня нет питомца
+      </div>
+
+    </div>
+    <div class="pet-photo_main"></div>
+  </section>
+
+  <section class="start">
+    <div class="container">
+      <div class="start__title">
+        Отлично, можем начинать!
+      </div>
+      <div class="test slides">
+        <div class="slide">
+          <div class="test__item">
+            <div class="test__image test__image_1"></div>
+            <div class="test__text">
+              Ты встаешь с утра — опаздываешь на работу, но нужно накормить питомца. Кладешь еду в миску в спешке, как попало. Что будет делать <span class="pet-name">(Имя питомца)</span>, когда захочет есть?
+            </div>
+            <ul class="test__item-list">
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option11" name="q1" value="a">
+                <label for="option11">
+                  <div class="test__item-label">
+                    Проверит, хорошо ли пахнет еда. А то вдруг испортилась!
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option12" name="q1" value="b">
+                <label for="option12">
+                  <div class="test__item-label">
+                    Сразу пойдет есть.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option13" name="q1" value="c">
+                <label for="option13">
+                  <div class="test__item-label">
+                    Не будет есть, если еда не насыпана горочкой.
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <button disabled class="next-btn test__btn btn btn_pink">
+              Далее
+            </button>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="test__item">
+            <div class="test__image test__image_2"></div>
+            <div class="test__text">
+              <span class="pet-name">(Имя питомца)</span> просыпается. Какими будут первые действия?
+            </div>
+            <ul class="test__item-list">
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option21" name="q2" value="a">
+                <label for="option21">
+                  <div class="test__item-label">
+                    Начнет умолять о еде.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option22" name="q2" value="b">
+                <label for="option22">
+                  <div class="test__item-label">
+                    Сразу начнет мыться, чтобы начать новый день чистым.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option23" name="q2" value="c">
+                <label for="option23">
+                  <div class="test__item-label">
+                    Найдет тебя где угодно и потребует играть.
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <button disabled class="next-btn test__btn btn btn_pink">
+              Далее
+            </button>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="test__item">
+            <div class="test__image test__image_3"></div>
+            <div class="test__text">
+              Какой у <span class="pet-name">(Имя питомца)</span> распорядок дня?
+            </div>
+            <ul class="test__item-list">
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option31" name="q3" value="a">
+                <label for="option31">
+                  <div class="test__item-label">
+                    Каждый день подъем в одно и то же время, еда по расписанию.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option32" name="q3" value="b">
+                <label for="option32">
+                  <div class="test__item-label">
+                    Утром — играть, днем — носиться, ночью — хотеть есть.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option33" name="q3" value="c">
+                <label for="option33">
+                  <div class="test__item-label">
+                    Каждый день по-разному, но неизменно одно — постоянно проситься на ручки.
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <button disabled class="next-btn test__btn btn btn_pink">
+              Далее
+            </button>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="test__item">
+            <div class="test__image test__image_4"></div>
+            <div class="test__text">
+              Ты приходишь вечером домой. Как ведет себя <span class="pet-name">(Имя питомца)</span>?
+            </div>
+            <ul class="test__item-list">
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option41" name="q4" value="a">
+                <label for="option41">
+                  <div class="test__item-label">
+                    Не сдвигается с места — если нужно, подходите сами!
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option42" name="q4" value="b">
+                <label for="option42">
+                  <div class="test__item-label">
+                    Ждет, когда ему наконец дадут поесть.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option43" name="q4" value="c">
+                <label for="option43">
+                  <div class="test__item-label">
+                    Караулит у двери с игрушкой.
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <button disabled class="next-btn test__btn btn btn_pink">
+              Далее
+            </button>
+          </div>
+        </div>
+        <div class="slide">
+          <div class="test__item">
+            <div class="test__image test__image_5"></div>
+            <div class="test__text">
+              <span class="pet-name">(Имя питомца)</span> весь день проводит дома в одиночестве. Чем будет заниматься?
+            </div>
+            <ul class="test__item-list">
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option51" name="q5" value="a">
+                <label for="option51">
+                  <div class="test__item-label">
+                    Поспит, поест, потом снова поспит.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option52" name="q5" value="b">
+                <label for="option52">
+                  <div class="test__item-label">
+                    Прекрасно проведет время наедине с собой, поиграет, разнесет квартиру.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option53" name="q5" value="c">
+                <label for="option53">
+                  <div class="test__item-label">
+                    Будет очень скучать и ждать.
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <button disabled class="next-btn test__btn btn btn_pink">
+              Далее
+            </button>
+          </div>
+        </div>
+        
+        <div class="slide">
+          <div class="test__item">
+            <div class="test__image test__image_6"></div>
+            <div class="test__text">
+              Ты покупаешь <span class="pet-name">(Имя питомца)</span> новую игрушку. Какой будет реакция?
+            </div>
+            <ul class="test__item-list">
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option61" name="q6" value="a">
+                <label for="option61">
+                  <div class="test__item-label">
+                    Будет настроен скептически — все осмотрит и обнюхает.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option62" name="q6" value="b">
+                <label for="option62">
+                  <div class="test__item-label">
+                    Обрадуется и сразу начнет играть.
+                  </div>
+                </label>
+              </li>
+              <li class="test__item-list-item">
+                <input class="test__item-radio" type="radio" id="option63" name="q6" value="c">
+                <label for="option63">
+                  <div class="test__item-label">
+                    Предпочтет свои любимые игрушки новой.
+                  </div>
+                </label>
+              </li>
+            </ul>
+            <button disabled id="submitButton" class="next-btn test__btn btn btn_pink">
+              Узнать результат
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="dots test__steps">
+        <div class="dot test__steps-item test__steps-item_active"></div>
+        <div class="dot test__steps-item"></div>
+        <div class="dot test__steps-item"></div>
+        <div class="dot test__steps-item"></div>
+        <div class="dot test__steps-item"></div>
+        <div class="dot test__steps-item"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="result">
+    <div class="container">
+      <div class="result__image"></div>
+      <div class="result__title">
+        <div class="result__title-name pet-name" id="namePet">
+          (Имя питомца)
+        </div>
+        <div class="result__title-prof" id="profPet">
+          (Профессия хвостика)
+        </div>
+      </div>
+      <div class="result__text">
+        <p class="result__text-info" id="profPetText"></p>
+        <br>
+        <br>
+        Помоги своему питомцу откликнуться 
+        <a class="result__text-link" target="_blank" href="#">на вакансии СберЗдоровья,</a> чтобы он мог создавать ветеринарный сервис для своих собратьев. А то у него лапки!
+      </div>
+      <div class="result__btn btn btn_pink">
+        Поделиться результатами
+      </div>
+      <div class="logo"></div>
+
+      <div class="result__grid">
+        <div class="result__grid-list">
+          <div class="result__grid-item result__grid-item_1"></div>
+          <div class="result__grid-item result__grid-item_2"></div>
+          <div class="result__grid-item result__grid-item_3"></div>
+          <div class="result__grid-item result__grid-item_4"></div>
+          <div class="result__grid-item result__grid-item_5"></div>
+        </div>
+        <div class="result__grid-list">
+          <div class="result__grid-item result__grid-item_1"></div>
+          <div class="result__grid-item result__grid-item_2"></div>
+          <div class="result__grid-item result__grid-item_3"></div>
+          <div class="result__grid-item result__grid-item_4"></div>
+          <div class="result__grid-item result__grid-item_5"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__title">
+        Делимся
+      </div>
+      <div class="footer__social">
+        <a href="https://habr.com/ru/feed/" 
+            target="_blank" 
+            class="footer__social-item">
+          <div class="footer__social-icon footer__social-icon_habr"></div>
+          <div class="footer__social-title">
+            Хабр
+          </div>
+        </a>
+        <a href="https://vc.ru/" 
+            target="_blank" 
+            class="footer__social-item">
+          <div class="footer__social-icon footer__social-icon_vc"></div>
+          <div class="footer__social-title">
+            VC
+          </div>
+        </a>
+      </div>
+      <div class="logo_white"></div>
+      <div class="footer__text">
+        ООО «ИННОВАЦИОННАЯ МЕДИЦИНА» <br>
+        Юридический адрес: 105203, г. Москва, ул. Нижняя <br>
+        Первомайская, д. 44, этаж цоколь, пом/ком XII/8, 9 <br>
+        ОГРН 1197746310618
+      </div>
+      <div class="footer__text">
+        Для партнёров: <a class="footer__text-link footer__text-link_blue" href="mailto:info@sberhealth.ru">info@sberhealth.ru</a><br>
+        Для клиентов: <a class="footer__text-link footer__text-link_blue" href="mailto:help@sberhealth.ru">help@sberhealth.ru</a><br>
+        Звоните нам: <a class="footer__text-link" href="tel:88001003598">8 800 100-35-98</a>
+      </div>
+      <div class="footer__text">
+        <a class="footer__text-link" href="#" target="_blank">
+          Политика обработки персональных данных
+        </a> <br> <br>
+        <a class="footer__text-link" href="#" target="_blank">
+          Лицензия на медицинскую деятельность
+        </a> <br> <br>
+        <a class="footer__text-link" href="#" target="_blank">
+          Реквизиты ООО «ИННОВАЦИОННАЯ МЕДИЦИНА»
+        </a> <br> <br>
+        <a class="footer__text-link" href="#" target="_blank">
+          Политика обработки данных YandexCaptcha
+        </a> <br> <br> <br>
+        <div>
+          © SBERHEALTH.RU 2012–2024
+        </div>
+      </div>
+      <div class="footer__text footer__text_info">
+        <div class="footer__text_info-18"></div>
+        <div class="footer__text footer__text_info__text">
+          ООО «ИННОВАЦИОННАЯ МЕДИЦИНА» оказывает медицинские и иные
+          услуги с использованием сервиса СберЗдоровье (приложение
+          СберЗдоровье, сайт sberhealth.ru), правообладателями которого
+          является ООО «ДокДок», ИНН 9710011437 и иные лица. Информация,
+          представленная на сайте, не может быть использована для постановки
+          диагноза, назначения лечения и не заменяет приём врача
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__socials">
+      <a class="footer__socials-item footer__socials-item_vk" 
+          target="_blank" 
+          href=""></a>
+      <a class="footer__socials-item footer__socials-item_tg" 
+          target="_blank" 
+          href=""></a>
+      <a class="footer__socials-item footer__socials-item_yt" 
+          target="_blank" 
+          href=""></a>
+    </div>
+    <div class="pet-photo_bottom"></div>
+  </footer>
+</body>
+</html>

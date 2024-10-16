@@ -1,0 +1,71 @@
+$black: #000;
+$white: #FFF;
+
+$bg-yellow: #F6F3E8;
+$bg-gray: #F9F9F9;
+$bg-black: #171717;
+$bg-blue: #F2F6FF;
+
+$btn-pink: #FF0066;
+
+$text-gray: #949494;
+$text-blue: #C3E0F6;
+
+// Использование: @include respond(min-400) { ... }
+@mixin respond($breakpoint) {
+  @if $breakpoint == min-400 {
+    @media (min-width: 400px) { @content; }
+  } @else if $breakpoint == min-480 {
+    @media (min-width: 480px) { @content; }
+  } @else if $breakpoint == min-768 {
+    @media (min-width: 768px) { @content; }
+  } @else if $breakpoint == min-980 {
+    @media (min-width: 980px) { @content; }
+  } @else if $breakpoint == min-1100 {
+    @media (min-width: 1100px) { @content; }
+  } @else if $breakpoint == min-1280 {
+    @media (min-width: 1280px) { @content; }
+  }
+}
+
+// @include background-cover('path/to/your/image.jpg');
+@mixin bg-cover($image-url) {
+  background-image: url($image-url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+@mixin bg-contain($image-url) {
+  background-image: url($image-url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+// Миксин для шрифта
+@mixin font-regular($font-size, $line-height: 1.1) {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+@mixin font-medium($font-size, $line-height: 1.1) {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+@mixin font-semibold($font-size, $line-height: 1.1) {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+@mixin font-bold($font-size, $line-height: 1.1) {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: $font-size;
+  line-height: $line-height;
+}
+
+

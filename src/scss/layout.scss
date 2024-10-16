@@ -1,0 +1,68 @@
+body {
+  min-height: 100vh;
+  @include font-regular(14px, 1.3);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.main {
+  z-index: 1;
+}
+.photo {
+  z-index: 2;
+}
+
+.container {
+  max-width: 1250px;
+  padding: 0 5px;
+  margin: 0 auto;
+
+  @include respond(min-768) {
+    padding: 0 15px
+  }
+}
+
+.logo {
+  @include bg-contain('../images/vector--sber.svg');
+  width: 160px;
+  height: 18px;
+}
+
+.logo_white {
+  @include bg-contain('../images/vector--sber_white.svg');
+  width: 175px;
+  height: 20px;
+}
+
+.btn {
+  outline: none;
+  background-color: $white;
+  border: none;
+  transition-duration: .3s;
+  text-align: center;
+
+  &:hover {
+    transition-duration: .3s;
+    cursor: pointer;
+  }
+}
+
+.btn_pink {
+  @include font-semibold(17px, 19px);
+  border-radius: 16px;
+  background-color: $btn-pink;
+  color: $white;
+  max-width: 330px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: darken($btn-pink, 5%);
+  }
+}
+
+.bg-image {
+  z-index: 0;
+  position: absolute;
+}
