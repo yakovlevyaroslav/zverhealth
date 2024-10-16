@@ -6,9 +6,11 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    filename: 'js/[name].[contenthash].js',
+    // filename: 'js/[name].[contenthash].js',
+    filename: 'js/[name].js',
     path: path.resolve(__dirname, 'static/dist'),
-    assetModuleFilename: 'images/[hash][ext][query]',
+    // assetModuleFilename: 'images/[hash][ext][query]',
+    assetModuleFilename: 'images/[name][ext][query]',
     clean: true,
   },
   mode: 'development', // Измените на 'production' для продакшн сборки
@@ -50,7 +52,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[contenthash].css',
+      // filename: 'css/[name].[contenthash].css',
+      filename: 'css/[name].css',
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webpack Project</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/main.7cfbfb15a724011fcb60.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
   <section class="main">
@@ -30,7 +30,7 @@
         Посмотрим, <br>
         кто тут у нас?
       </div>
-      <form class="form">
+      <div class="form">
         <div class="form__subtitle">
           Загрузи фото своего или чужого питомца
         </div>
@@ -38,15 +38,11 @@
         <div class="form__title">
           Как зовут твоего питомца?
         </div>
-        
-        <!-- Скрытый input для загрузки изображения -->
-        <input type="file" id="fileInput" accept="image/*" />
-
         <div class="form__name">
           <input type="text" autocomplete="off" class="form__name-input" id="nameInput" placeholder="Имя">
           <button disabled class="btn form__name-submit" id="nameInputBtn"></button>
         </div>
-      </form>
+      </div>
       <div class="photo__btn btn btn_pink">
         У меня нет питомца
       </div>
@@ -281,9 +277,10 @@
             </ul>
             <form method="POST" enctype="multipart/form-data">
               {% csrf_token %}
-              <input type="file" name="image" accept="image/*" style="display: none;">
+              <input id="fileInput" type="file" name="image" accept="image/*" style="display: none;">
+              <input id="promptText" type="hidden" name="prompt" style="display: none;">
               <button disabled id="submitButton" class="next-btn test__btn btn btn_pink">
-              Узнать результат
+                Узнать результат
               </button>
             </form>
           </div>
@@ -303,8 +300,7 @@
 
   <section class="result">
     <div class="container">
-        <img src="{{ edited_image }}" alt="Сгенерированное изображение" id="result_image">
-      <div class="result__image"></div>
+      <div class="result__image" style="background-image: url('{{ edited_image }}');"></div>
       <div class="result__title">
         <div class="result__title-name pet-name" id="namePet">
           (Имя питомца)
@@ -421,6 +417,6 @@
     </div>
     <div class="pet-photo_bottom"></div>
   </footer>
-  <script src="{% static 'js/main.496ad38583fd47fbba1e.js' %}"></script>
+  <script src="{% static 'js/main.js' %}"></script>
 </body>
 </html>

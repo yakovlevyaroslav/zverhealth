@@ -193,7 +193,8 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   
   // Обработчик нажатия на кнопку "Узнать результат"
-  submitButton.addEventListener('click', () => {
+  submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
     if (nameInputBtn.hasAttribute('disabled')) {
       photoBlock.scrollIntoView({
         behavior: 'smooth',
@@ -221,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const profession = calculateProfession(answers); // Определяем профессию
         profPetDiv.textContent = profession.name; // Записываем результат в #profPet
         profPetText.textContent = profession.text; // Записываем результат в #profPet// Создаем объект FormData для отправки формы
-        
+
         const formData = new FormData();
     
         // Добавляем файл
@@ -232,9 +233,11 @@ document.addEventListener('DOMContentLoaded', function () {
           console.error('Файл не выбран');
           return; // Прерываем выполнение, если файл не выбран
         }
-    
-        // Добавляем профессию питомца
-        formData.append('profession', profession.name);
+        const promptText = document.getElementById('promptText');
+        
+        // Добавляем значение поля promptText
+        // formData.append('prompt', promptText.value);
+        formData.append('prompt', 'View from the window to the business center, computers in the office, office furniture, sunny day, successful life');
     
         // Отправляем POST-запрос
         fetch('/', {
