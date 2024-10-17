@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Project</title>
+    <title>Zver Health Project</title>
 </head>
 <body>
   <section class="main">
@@ -45,8 +45,22 @@
           <button disabled class="btn form__name-submit" id="nameInputBtn"></button>
         </div>
       </form>
-      <div class="photo__btn btn btn_pink">
-        У меня нет питомца
+
+
+
+      <div class="button-container">
+        <button class="photo__btn btn btn_pink" id="noPet">
+          У меня нет питомца
+        </button>
+        <div class="photo__tooltip" id="noPetTooltip">
+          <div class="photo__tooltip-content">
+            <div class="photo__tooltip-text">
+              Ничего страшного — ты можешь загрузить фото питомца друга!
+            </div>
+            <div class="photo__tooltip-star"></div>
+            <div class="photo__tooltip-line"></div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -317,25 +331,30 @@
         Поделиться результатами
       </div>
       <div class="logo"></div>
+    </div>
+  </section>
 
-      <div class="result__grid">
-        <div class="result__grid-list">
-          <div class="result__grid-item result__grid-item_1"></div>
-          <div class="result__grid-item result__grid-item_2"></div>
-          <div class="result__grid-item result__grid-item_3"></div>
-          <div class="result__grid-item result__grid-item_4"></div>
-          <div class="result__grid-item result__grid-item_5"></div>
+  <section class="besties">
+    <div class="container">
+      <div class="besties__grid">
+        <div class="besties__grid-list">
+          <div class="besties__grid-item besties__grid-item_1"></div>
+          <div class="besties__grid-item besties__grid-item_2"></div>
+          <div class="besties__grid-item besties__grid-item_3"></div>
+          <div class="besties__grid-item besties__grid-item_4"></div>
+          <div class="besties__grid-item besties__grid-item_5"></div>
         </div>
-        <div class="result__grid-list">
-          <div class="result__grid-item result__grid-item_1"></div>
-          <div class="result__grid-item result__grid-item_2"></div>
-          <div class="result__grid-item result__grid-item_3"></div>
-          <div class="result__grid-item result__grid-item_4"></div>
-          <div class="result__grid-item result__grid-item_5"></div>
+        <div class="besties__grid-list">
+          <div class="besties__grid-item besties__grid-item_1"></div>
+          <div class="besties__grid-item besties__grid-item_2"></div>
+          <div class="besties__grid-item besties__grid-item_3"></div>
+          <div class="besties__grid-item besties__grid-item_4"></div>
+          <div class="besties__grid-item besties__grid-item_5"></div>
         </div>
       </div>
     </div>
   </section>
+
   <footer class="footer">
     <div class="container">
       <div class="footer__title">
