@@ -275,10 +275,10 @@
                 </label>
               </li>
             </ul>
-            <form method="POST" enctype="multipart/form-data">
+            <form id="postForm" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <input id="fileInput" type="file" name="image" accept="image/*" style="display: none;">
-              <input id="promptText" type="hidden" name="prompt" style="display: none;">
+              <input id="promptText" value="View from the window to the business center, computers in the office, office furniture" type="hidden" name="prompt" style="display: none;">
               <button disabled id="submitButton" class="next-btn test__btn btn btn_pink">
                 Узнать результат
               </button>
@@ -300,7 +300,7 @@
 
   <section class="result">
     <div class="container">
-      <div class="result__image" style="background-image: url({{ edited_image }});"></div>
+      <div class="result__image"></div>
       <div class="result__title">
         <div class="result__title-name pet-name" id="namePet">
           (Имя питомца)

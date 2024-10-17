@@ -223,69 +223,63 @@ document.addEventListener('DOMContentLoaded', function () {
         profPetDiv.textContent = profession.name; // Записываем результат в #profPet
         profPetText.textContent = profession.text; // Записываем результат в #profPet// Создаем объект FormData для отправки формы
 
-        const formData = new FormData();
-    
-        // Добавляем файл
-        const file = fileInput.files[0];
-        if (file) {
-          formData.append('image', file);
-        } else {
-          console.error('Файл не выбран');
-          return; // Прерываем выполнение, если файл не выбран
-        }
-        const promptText = document.getElementById('promptText');
-        
-        // Добавляем значение поля promptText
-        // formData.append('prompt', promptText.value);
-        formData.append('prompt', 'View from the window to the business center, computers in the office, office furniture, sunny day, successful life');
-        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        // Отправляем POST-запрос
-        fetch('/', {
-          method: 'POST',
-          body: formData,
-          headers: {
-            'X-CSRFToken': csrftoken // Добавляем токен в заголовок
-          }
-        })
-        .then(response => response.json())
-        .then(data => {
-          console.log('Успешная отправка:', data);
-        })
-        .catch(error => {
-          console.error('Ошибка отправки:', error);
-        });
-    
-      } else {
-        profPetDiv.textContent = 'Пожалуйста, ответьте на все вопросы'; // Сообщение, если не все вопросы отвечены
+        sendImage()
       }
     }
   });
-  const button = document.getElementById('noPet');
-  const tooltip = document.getElementById('noPetTooltip');
+  
+  const noPetButton = document.getElementById('noPet');
+  const noPetTooltip = document.getElementById('noPetTooltip');
     
     // Определение мобильного устройства
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
     if (isMobile) {
       // Для мобильных устройств: показ тултипа по клику
-      button.addEventListener('click', () => {
-        tooltip.classList.toggle('visible');
+      noPetButton.addEventListener('click', () => {
+        noPetTooltip.classList.toggle('visible');
       });
 
       // Скрытие тултипа, если нажали вне кнопки
-      document.addEventListener('click', (event) => {
+      noPetButton.addEventListener('click', (event) => {
         if (!button.contains(event.target)) {
-          tooltip.classList.remove('visible');
+          noPetTooltip.classList.remove('visible');
         }
       });
     } else {
       // Для десктопов: показ тултипа при наведении
-      button.addEventListener('mouseenter', () => {
-        tooltip.classList.add('visible');
-      });
+      // noPetButton.addEventListener('mouseenter', () => {
+      //   noPetTooltip.classList.add('visible');
+      // });
 
-      button.addEventListener('mouseleave', () => {
-        tooltip.classList.remove('visible');
+      // noPetButton.addEventListener('mouseleave', () => {
+      //   noPetTooltip.classList.remove('visible');
+      // });
+    }
+
+    const sendImage = function() {
+      const form = document.getElementById('postForm');
+      // const promptText = document.getElementById('promptText');
+      const formData = new FormData(form);
+      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      fetch('/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'X-CSRFToken': csrftoken // Добавляем токен в заголовок
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Получаем URL изображения из JSON-ответа
+        const editedImageUrl = data.edited_image;
+
+        // Обновляем элемент с изображением 
+        const imageElement = document.querySelector('.result__image');
+        imageElement.style.backgroundImage = `url(${editedImageUrl})`;
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
       });
     }
 })
