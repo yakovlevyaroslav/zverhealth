@@ -1,6 +1,7 @@
 import logging
 
 import requests
+from django.http import JsonResponse
 
 from django.shortcuts import redirect, render
 
@@ -65,9 +66,9 @@ def index(request):
                         response = requests.get(edited_image_url, stream=True)
                         cat_image = CatImage.objects.create()
                         cat_image.image.save(f'edited_{cat_image.id}.jpg', response.raw)
-                        print(f'Сохранено: {cat_image.image}')
+                        print(f'Сохранено: {cat_image.image.url}')
                         # Отображение результата на странице
-                        return render(request, 'index.html', {'edited_image': cat_image.image.url, 'error': None})
+                        return JsonResponse({'edited_image': cat_image.image.url})
                     elif status == 'error':
                         # Обработка ошибки API
                         logging.error(f'Error processing image: {get_response.json()}')
@@ -83,6 +84,15 @@ def index(request):
 
     # Отображение страницы загрузки
     return render(request, 'index.html')
+
+
+def get_public_images(request):
+    """
+    Эндпоинт для вывода последних 20 публичных картинок.
+    """
+    images = CatImage.objects.filter(is_public=True).order_by('-id')[:20]
+    image_urls = [image.image.url for image in images]
+    return JsonResponse({'images': image_urls})
 
 
 def publish(request, cat_image_id):
