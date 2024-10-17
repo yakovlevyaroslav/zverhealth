@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
-  const noPetButton = document.getElementById('noPet');
+  const noPetButton = document.getElementById('noPetBtn');
   const noPetTooltip = document.getElementById('noPetTooltip');
     
     // Определение мобильного устройства
@@ -248,21 +248,29 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     } else {
       // Для десктопов: показ тултипа при наведении
-      // noPetButton.addEventListener('mouseenter', () => {
-      //   noPetTooltip.classList.add('visible');
-      // });
+      noPetButton.addEventListener('mouseenter', () => {
+        noPetTooltip.classList.add('visible');
+      });
 
-      // noPetButton.addEventListener('mouseleave', () => {
-      //   noPetTooltip.classList.remove('visible');
-      // });
+      noPetButton.addEventListener('mouseleave', () => {
+        noPetTooltip.classList.remove('visible');
+      });
     }
 
     const sendImage = function() {
       const form = document.getElementById('postForm');
-      // const promptText = document.getElementById('promptText');
       const formData = new FormData(form);
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-      fetch('/', {
+      // const promptText = document.getElementById('promptText');
+
+
+      // Находим элемент изображения
+      const imageElement = document.querySelector('#result__image');
+
+      // Устанавливаем прелоадер как background-image до получения ответа
+      imageElement.classList.add('result__image_preloader'); // Замените на путь к вашему файлу прелоадера
+
+      fetch('/asd', {
         method: 'POST',
         body: formData,
         headers: {
@@ -275,7 +283,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const editedImageUrl = data.edited_image;
 
         // Обновляем элемент с изображением 
-        const imageElement = document.querySelector('.result__image');
         imageElement.style.backgroundImage = `url(${editedImageUrl})`;
       })
       .catch(error => {

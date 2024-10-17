@@ -396,6 +396,10 @@
       max-width: 400px;
       height: 400px;
     }
+
+    &_preloader {
+      @include bg-contain('../images/preloader.svg');
+    }
   }
 
   .result__title {
