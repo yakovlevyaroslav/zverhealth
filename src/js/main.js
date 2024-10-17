@@ -227,7 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
-  
+
   const noPetButton = document.getElementById('noPet');
   const noPetTooltip = document.getElementById('noPetTooltip');
     
@@ -282,4 +282,50 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Ошибка:', error);
       });
     }
+
+    
+    const getGallery = function() {
+      fetch('/get_public_images/')
+        .then(response => response.json())
+        .then(data => {
+          // Проверяем, что у нас есть изображения
+          if (data.images && data.images.length > 0) {
+            const galleryContainer = document.getElementById('besties__grid'); // Блок для вставки
+    
+            // Очищаем блок, если нужно начать с чистого листа
+            galleryContainer.innerHTML = '';
+    
+            // Перебираем все изображения
+            data.images.forEach((image, index) => {
+              // Если индекс кратен 5 (то есть каждые 5 элементов), создаем новый блок besties__grid-list
+              if (index % 5 === 0) {
+                const gridList = document.createElement('div');
+                gridList.classList.add('besties__grid-list');
+                galleryContainer.appendChild(gridList);
+              }
+    
+              // Создаем элемент besties__grid-item
+              const gridItem = document.createElement('div');
+              gridItem.classList.add('besties__grid-item');
+              gridItem.classList.add(`besties__grid-item_${(index % 5) + 1}`); // Присваиваем соответствующий класс от 1 до 5
+    
+              // Устанавливаем изображение как background-image
+              gridItem.style.backgroundImage = `url(${image})`;
+    
+              // Добавляем элемент в последний блок besties__grid-list
+              const lastGridList = document.querySelector('#besties__grid .besties__grid-list:last-child');
+              lastGridList.appendChild(gridItem);
+            });
+          } else {
+            console.log('Нет изображений для отображения.');
+          }
+        })
+        .catch(error => {
+          console.error('Ошибка:', error);
+        });
+    };
+    
+    // Вызываем функцию для получения галереи
+    getGallery();
+    
 })

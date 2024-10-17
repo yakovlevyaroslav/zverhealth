@@ -6,6 +6,7 @@
     <title>Webpack Project</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
 </head>
 <body>
   <section class="main">
@@ -282,6 +283,12 @@
               <button disabled id="submitButton" class="next-btn test__btn btn btn_pink">
                 Узнать результат
               </button>
+              <div
+                  id="captcha-container"
+                  class="smart-captcha"
+                  data-sitekey="000-000-000"
+              ></div>
+
             </form>
           </div>
         </div>
@@ -320,25 +327,21 @@
         Поделиться результатами
       </div>
       <div class="logo"></div>
-
-      <div class="result__grid">
-        <div class="result__grid-list">
-          <div class="result__grid-item result__grid-item_1"></div>
-          <div class="result__grid-item result__grid-item_2"></div>
-          <div class="result__grid-item result__grid-item_3"></div>
-          <div class="result__grid-item result__grid-item_4"></div>
-          <div class="result__grid-item result__grid-item_5"></div>
-        </div>
-        <div class="result__grid-list">
-          <div class="result__grid-item result__grid-item_1"></div>
-          <div class="result__grid-item result__grid-item_2"></div>
-          <div class="result__grid-item result__grid-item_3"></div>
-          <div class="result__grid-item result__grid-item_4"></div>
-          <div class="result__grid-item result__grid-item_5"></div>
-        </div>
-      </div>
     </div>
   </section>
+  <div class="besties">
+    <div class="container">
+      <div class="besties__grid" id="besties__grid">
+        <!-- <div class="besties__grid-list">
+          <div class="besties__grid-item besties__grid-item_1"></div>
+          <div class="besties__grid-item besties__grid-item_2"></div>
+          <div class="besties__grid-item besties__grid-item_3"></div>
+          <div class="besties__grid-item besties__grid-item_4"></div>
+          <div class="besties__grid-item besties__grid-item_5"></div>
+        </div> -->
+      </div>
+    </div>
+  </div>
   <footer class="footer">
     <div class="container">
       <div class="footer__title">
