@@ -44,8 +44,20 @@
           <button disabled class="btn form__name-submit" id="nameInputBtn"></button>
         </div>
       </div>
-      <div class="photo__btn btn btn_pink" id="noPetBtn">
-        У меня нет питомца
+
+      <div class="button-container">
+        <button class="photo__btn btn btn_pink" id="noPetButton">
+          У меня нет питомца
+        </button>
+        <div class="photo__tooltip" id="noPetTooltip">
+          <div class="photo__tooltip-content">
+            <div class="photo__tooltip-text">
+              Ничего страшного — ты можешь загрузить фото питомца друга!
+            </div>
+            <div class="photo__tooltip-star"></div>
+            <div class="photo__tooltip-line"></div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -283,11 +295,12 @@
               <button disabled id="submitButton" class="next-btn test__btn btn btn_pink">
                 Узнать результат
               </button>
-              <div
+              <div class="form__message" id="messageForm"></div>
+              <!-- <div
                   id="captcha-container"
                   class="smart-captcha"
                   data-sitekey="000-000-000"
-              ></div>
+              ></div> -->
 
             </form>
           </div>
@@ -307,7 +320,11 @@
 
   <section class="result">
     <div class="container">
-      <div class="result__image" id="result__image"></div>
+      <div class="result__image" id="result__image">
+        <a class="result__image-link result__image-link_starter" href="">
+          <img class="result__image-picture result__image-picture_hidden" src="" />
+        </a>
+      </div>
       <div class="result__title">
         <div class="result__title-name pet-name" id="namePet">
           (Имя питомца)
@@ -321,10 +338,26 @@
         <br>
         <br>
         Помоги своему питомцу откликнуться 
-        <a class="result__text-link" target="_blank" href="#">на вакансии СберЗдоровья,</a> чтобы он мог создавать ветеринарный сервис для своих собратьев. А то у него лапки!
+        <a class="result__text-link" target="_blank" href="https://vacancy.sberhealth.ru/">
+          <span>
+            на вакансии СберЗдоровья,</span>
+          <div></div>
+        </a>
+        &nbsp;чтобы он мог создавать ветеринарный сервис для своих собратьев. А то у него лапки!
       </div>
-      <div class="result__btn btn btn_pink">
-        Поделиться результатами
+      <div class="result__share">
+        <div class="result__share-btn btn btn_pink" id="shareButton">
+          Поделиться результатами
+        </div>
+        <div class="result__share-list">
+          <a href="https://t.me/share/url?url=https://example.com&text=Здесь%20может%20быть%20ваш%20текст" 
+              target="_blank"
+              class="result__share-item result__share-item_tg"></a>
+          
+          <a href="https://t.me/share/url?url=https://example.com&text=Здесь%20может%20быть%20ваш%20текст" 
+              target="_blank" 
+              class="result__share-item result__share-item_vk"></a>
+        </div>
       </div>
       <div class="logo"></div>
     </div>
@@ -332,13 +365,23 @@
   <div class="besties">
     <div class="container">
       <div class="besties__grid" id="besties__grid">
-        <!-- <div class="besties__grid-list">
-          <div class="besties__grid-item besties__grid-item_1"></div>
-          <div class="besties__grid-item besties__grid-item_2"></div>
-          <div class="besties__grid-item besties__grid-item_3"></div>
-          <div class="besties__grid-item besties__grid-item_4"></div>
-          <div class="besties__grid-item besties__grid-item_5"></div>
-        </div> -->
+        <div class="besties__grid-list" id="besties__grid-list">
+          <!-- <a class="besties__grid-item besties__grid-item_1" href="https://images.unsplash.com/photo-1709324492299-f1d1f7f8f56d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1709324492299-f1d1f7f8f56d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          </a>
+          <a class="besties__grid-item besties__grid-item_2" href="https://images.unsplash.com/photo-1727175078650-7cb1a883280d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1727175078650-7cb1a883280d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          </a>
+          <a class="besties__grid-item besties__grid-item_3" href="https://plus.unsplash.com/premium_photo-1729017497963-ec4ec3458794?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <img class="besties__grid-image" src="https://plus.unsplash.com/premium_photo-1729017497963-ec4ec3458794?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          </a>
+          <a class="besties__grid-item besties__grid-item_4" href="https://images.unsplash.com/photo-1728412389947-da908fb5dfff?q=80&w=2880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1728412389947-da908fb5dfff?q=80&w=2880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          </a>
+          <a class="besties__grid-item besties__grid-item_5" href="https://images.unsplash.com/photo-1728357728879-ac9a5c703c2c?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1728357728879-ac9a5c703c2c?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          </a> -->
+        </div>
       </div>
     </div>
   </div>
@@ -348,7 +391,7 @@
         Делимся
       </div>
       <div class="footer__social">
-        <a href="https://habr.com/ru/feed/" 
+        <a href="https://habr.com/share?url=https://example.com&title=Заголовок%20статьи" 
             target="_blank" 
             class="footer__social-item">
           <div class="footer__social-icon footer__social-icon_habr"></div>
@@ -356,7 +399,7 @@
             Хабр
           </div>
         </a>
-        <a href="https://vc.ru/" 
+        <a href="https://vc.ru/share?url=https://example.com&title=Заголовок%20статьи"
             target="_blank" 
             class="footer__social-item">
           <div class="footer__social-icon footer__social-icon_vc"></div>
