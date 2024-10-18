@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack Project</title>
+    <title>Zver Health Project</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script>
+    <!-- <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> -->
 </head>
 <body>
   <section class="main">
@@ -65,7 +65,7 @@
   </section>
 
   <section class="start">
-    <div class="container">
+    <div class="">
       <div class="start__title">
         Отлично, можем начинать!
       </div>
@@ -74,7 +74,7 @@
           <div class="test__item">
             <div class="test__image test__image_1"></div>
             <div class="test__text">
-              Ты встаешь с утра — опаздываешь на работу, но нужно накормить питомца. Кладешь еду в миску в спешке, как попало. Что будет делать <span class="pet-name">(Имя питомца)</span>, когда захочет есть?
+              Ты встаешь с утра — опаздываешь на работу, но нужно накормить питомца. Кладешь еду в миску в спешке, как попало. Что будет делать <span class="pet-name"></span>, когда захочет есть?
             </div>
             <ul class="test__item-list">
               <li class="test__item-list-item">
@@ -111,7 +111,7 @@
           <div class="test__item">
             <div class="test__image test__image_2"></div>
             <div class="test__text">
-              <span class="pet-name">(Имя питомца)</span> просыпается. Какими будут первые действия?
+              <span class="pet-name"></span> просыпается. Какими будут первые действия?
             </div>
             <ul class="test__item-list">
               <li class="test__item-list-item">
@@ -148,7 +148,7 @@
           <div class="test__item">
             <div class="test__image test__image_3"></div>
             <div class="test__text">
-              Какой у <span class="pet-name">(Имя питомца)</span> распорядок дня?
+              Какой у <span class="pet-name"></span> распорядок дня?
             </div>
             <ul class="test__item-list">
               <li class="test__item-list-item">
@@ -163,7 +163,7 @@
                 <input class="test__item-radio" type="radio" id="option32" name="q3" value="b">
                 <label for="option32">
                   <div class="test__item-label">
-                    Утром — играть, днем — носиться, ночью — хотеть есть.
+                    Утром — играть, днем — носиться, ночью — хотеть есть.
                   </div>
                 </label>
               </li>
@@ -185,7 +185,7 @@
           <div class="test__item">
             <div class="test__image test__image_4"></div>
             <div class="test__text">
-              Ты приходишь вечером домой. Как ведет себя <span class="pet-name">(Имя питомца)</span>?
+              Ты приходишь вечером домой. Как ведет себя <span class="pet-name"></span>?
             </div>
             <ul class="test__item-list">
               <li class="test__item-list-item">
@@ -222,7 +222,7 @@
           <div class="test__item">
             <div class="test__image test__image_5"></div>
             <div class="test__text">
-              <span class="pet-name">(Имя питомца)</span> весь день проводит дома в одиночестве. Чем будет заниматься?
+              <span class="pet-name"></span> весь день проводит дома в одиночестве. Чем будет заниматься?
             </div>
             <ul class="test__item-list">
               <li class="test__item-list-item">
@@ -260,7 +260,7 @@
           <div class="test__item">
             <div class="test__image test__image_6"></div>
             <div class="test__text">
-              Ты покупаешь <span class="pet-name">(Имя питомца)</span> новую игрушку. Какой будет реакция?
+              Ты покупаешь <span class="pet-name"></span> новую игрушку. Какой будет реакция?
             </div>
             <ul class="test__item-list">
               <li class="test__item-list-item">
@@ -291,6 +291,9 @@
             <form id="postForm" method="POST" enctype="multipart/form-data">
               {% csrf_token %}
               <input id="fileInput" type="file" name="image" accept="image/*" style="display: none;">
+              <input id="nameInputFinal" type="text" name="name">
+              <input id="nameProfessionFinal" type="text" name="profession">
+              <input id="durationInputFinal" type="hidden" name="duration">
               <input id="promptText" value="View from the window to the business center, computers in the office, office furniture" type="hidden" name="prompt" style="display: none;">
               <button disabled id="submitButton" class="next-btn test__btn btn btn_pink">
                 Узнать результат
@@ -301,7 +304,6 @@
                   class="smart-captcha"
                   data-sitekey="000-000-000"
               ></div> -->
-
             </form>
           </div>
         </div>
@@ -327,10 +329,10 @@
       </div>
       <div class="result__title">
         <div class="result__title-name pet-name" id="namePet">
-          (Имя питомца)
+          
         </div>
         <div class="result__title-prof" id="profPet">
-          (Профессия хвостика)
+          
         </div>
       </div>
       <div class="result__text">
@@ -346,15 +348,15 @@
         &nbsp;чтобы он мог создавать ветеринарный сервис для своих собратьев. А то у него лапки!
       </div>
       <div class="result__share">
-        <div class="result__share-btn btn btn_pink" id="shareButton">
+        <div class="result__share-btn result__share-btn_unactivate btn btn_pink" id="shareButton">
           Поделиться результатами
         </div>
         <div class="result__share-list">
-          <a href="https://t.me/share/url?url=https://example.com&text=Здесь%20может%20быть%20ваш%20текст" 
+          <a href="" 
               target="_blank"
+               id="telegramShare"
               class="result__share-item result__share-item_tg"></a>
-          
-          <a href="https://t.me/share/url?url=https://example.com&text=Здесь%20может%20быть%20ваш%20текст" 
+              <a href="" 
               target="_blank" 
               class="result__share-item result__share-item_vk"></a>
         </div>
@@ -430,9 +432,10 @@
         <a class="footer__text-link" href="#" target="_blank">
           Реквизиты ООО «ИННОВАЦИОННАЯ МЕДИЦИНА»
         </a> <br> <br>
-        <a class="footer__text-link" href="#" target="_blank">
+        <!-- <a class="footer__text-link" href="#" target="_blank">
           Политика обработки данных YandexCaptcha
-        </a> <br> <br> <br>
+        </a>  -->
+        <br> <br> <br>
         <div>
           © SBERHEALTH.RU 2012–2024
         </div>

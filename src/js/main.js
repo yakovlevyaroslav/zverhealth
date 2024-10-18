@@ -1,9 +1,35 @@
 import lightGallery from 'lightgallery';
 // Plugins
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
-import lgZoom from 'lightgallery/plugins/zoom'
 
 document.addEventListener('DOMContentLoaded', function () {
+
+  const shareBtnsGenerator = function(namePet, petProfession) {
+    document.getElementById('shareButton').classList.remove('result__share-btn_unactivate')
+
+    // Текст, который нужно вставить в ссылку для шеринга
+    const shareText = `Узнай профессию своего любимца! Мой питомец - ${namePet} работает в должности ${petProfession}`;
+    // Кодируем текст, чтобы он корректно передавался в URL
+    const encodedText = encodeURIComponent(shareText);
+    // Генерируем ссылку для шеринга
+    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin}&text=${encodedText}`;
+    // Находим элемент, куда будем вставлять ссылку
+    const shareButtonTg = document.getElementById('telegramShare');
+    // Устанавливаем ссылку в кнопку
+    shareButtonTg.href = telegramShareUrl;
+  }
+
+  let openingTime
+  const handleFirstScroll = () => {
+    // Ваше действие при первом скролле
+    openingTime = new Date();
+
+    // Удаляем обработчик события после первого срабатывания
+    window.removeEventListener('scroll', handleFirstScroll);
+  };
+  window.addEventListener('scroll', handleFirstScroll);
+
+
   const imageBlock = document.getElementById('imageBlock');
   const fileInput = document.getElementById('fileInput');
 
@@ -55,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
     petName = nameInput.value;
     namePet.forEach(function (item) {
-      item.textContent = petName ? petName : '(Имя питомца)';
+      item.textContent = petName ? petName : '';
     })
     if (petName) {
       startBlock.scrollIntoView({
@@ -63,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         block: 'start'
       });
     }
-  })
+   })
 
   nameInput.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
@@ -189,6 +215,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const profPetText = document.getElementById('profPetText');
   const promptText = document.getElementById('promptText');
 
+  const nameInputFinal = document.getElementById('nameInputFinal');
+  const nameProfessionFinal = document.getElementById('nameProfessionFinal');
+  const durationInputFinal = document.getElementById('durationInputFinal');
+
   // Функция для подсчета совпадений с шаблоном
   function checkProfession(answers, pattern) {
     let matches = 0;
@@ -228,9 +258,16 @@ document.addEventListener('DOMContentLoaded', function () {
   submitButton.addEventListener('click', (event) => {
     event.preventDefault();
 
-    const form = document.getElementById('postForm'); 
+    const finalTime = timeDuration(openingTime, new Date())
+    durationInputFinal.value = finalTime;
+
+
+    const form = document.getElementById('postForm');
     const file = form.querySelector('#fileInput');
     const answers = [];
+
+    // Проверяем, можно ли отправлять форму
+    const cookieExpiration = getCookieExpirationTime("formAccess");
 
     if (file.value === '') {
       photoBlock.scrollIntoView({
@@ -255,7 +292,17 @@ document.addEventListener('DOMContentLoaded', function () {
         profPetText.textContent = profession.text; // Записываем результат в #profPet// Создаем объект FormData для отправки формы
         promptText.value = profession.prompt;
 
-        sendImage()
+        nameInputFinal.value = nameInput.value
+        nameProfessionFinal.value = profession.name
+
+        if (cookieExpiration) {
+          // Выводим сообщение с оставшимся временем с помощью alert
+          alert(`Форма недоступна. Попробуйте снова через ${cookieExpiration.hours} часов и ${cookieExpiration.minutes} минут.`);
+          // Блокируем кнопку отправки
+          submitButton.disabled = true;
+        } else {
+          sendImage()
+        }
       }
     }
   });
@@ -277,6 +324,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // Устанавливаем прелоадер как background-image до получения ответа
     resultImageLink.classList.remove('result__image-link_starter');
     resultImageLink.classList.add('result__image-link_preloader');
+
+    resultBlock.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
 
     fetch('/', {
         method: 'POST',
@@ -300,14 +352,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const lightGalleryResultElement = document.getElementById('result__image');
         // Инициализация Lightgallery с опциями
         lightGallery(lightGalleryResultElement, {
-          plugins: [lgZoom, lgThumbnail], // Подключаем плагины
+          plugins: [lgThumbnail], // Подключаем плагины
           speed: 500, // Скорость анимации
+          mobileSettings: {
+            download: true,
+          }
         });
 
-        resultBlock.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // Установка куки на 12 часов после успешной отправки
+        setCookie("formAccess", "blocked", 12);
       })
       .catch(error => {
         console.error('Ошибка:', error);
@@ -359,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  const getGallery = function() {
+  const getGallery = function () {
     fetch('/get_public_images/') // Укажите правильный URL для получения данных
       .then(response => response.json())
       .then(data => {
@@ -367,38 +420,42 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.images && data.images.length > 0) {
           // data.images - это массив объектов с URL изображений
           const images = data.images;
-  
+
+
           // Получаем контейнер, куда будем добавлять новые элементы
           const gridList = document.getElementById('besties__grid-list');
-    
+
           // Очищаем контейнер перед добавлением новых элементов (если это нужно)
           gridList.innerHTML = '';
-    
+
           // Перебираем изображения и создаем элементы
-          images.forEach((imageUrl, index) => {
+          images.forEach((imageData, index) => {
             // Создаем новый элемент "a" с классами и атрибутами
             const anchor = document.createElement('a');
             anchor.classList.add('besties__grid-item', `besties__grid-item_${index + 1}`);
-            anchor.href = window.location.origin + imageUrl; // Устанавливаем ссылку на изображение
-    
+            anchor.href = window.location.origin + imageData.url; // Устанавливаем ссылку на изображение
+
             // Создаем новый элемент "img" и добавляем его в ссылку
             const img = document.createElement('img');
             img.classList.add('besties__grid-image');
-            img.src = window.location.origin + imageUrl; // Устанавливаем src изображения
-            img.alt = `Image ${index + 1}`; // Устанавливаем alt для изображения
-    
+            img.src = window.location.origin + imageData.url; // Устанавливаем src изображения
+            img.alt = `${imageData.name}: ${imageData.profession}`; // Устанавливаем alt для изображения
+
             // Вставляем изображение внутрь ссылки
             anchor.appendChild(img);
-    
+
             // Вставляем ссылку внутрь контейнера grid-list
             gridList.appendChild(anchor);
           });
-            const lightGalleryElement = document.getElementById('besties__grid-list');
-            // Инициализация Lightgallery с опциями
-            lightGallery(lightGalleryElement, {
-              plugins: [lgZoom, lgThumbnail], // Подключаем плагины
-              speed: 500, // Скорость анимации
-            });
+          const lightGalleryElement = document.getElementById('besties__grid-list');
+          // Инициализация Lightgallery с опциями
+          lightGallery(lightGalleryElement, {
+            plugins: [lgThumbnail], // Подключаем плагины
+            speed: 500, // Скорость анимации
+            mobileSettings: {
+              download: true,
+            }
+          });
         } else {
           console.log('Нет изображений для отображения.');
         }
@@ -407,7 +464,54 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Ошибка:', error);
       });
   };
-  
+
   // Вызываем функцию для получения галереи изображений
   getGallery();
+
+  const timeDuration = function (time_start, time_end) {
+    return ((time_end - time_start) / 1000);
+  }
+
+
+
+  // Установка куки с временем истечения
+function setCookie(name, value, hours) {
+  const date = new Date();
+  date.setTime(date.getTime() + (hours * 60 * 60 * 1000)); // Устанавливаем время истечения
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+// Получение значения куки
+function getCookie(name) {
+  const value = "; " + document.cookie;
+  const parts = value.split("; " + name + "=");
+  if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+// Проверка оставшегося времени действия куки
+function getCookieExpirationTime(cookieName) {
+  const cookieValue = getCookie(cookieName);
+  if (!cookieValue) {
+    return null;
+  }
+  
+  // Получаем дату истечения куки
+  const expirationTime = new Date(document.cookie.split('expires=')[1]);
+  const currentTime = new Date();
+  
+  // Вычисляем разницу во времени
+  const timeDifference = expirationTime - currentTime;
+  
+  if (timeDifference <= 0) {
+    return null; // Кука уже истекла
+  }
+
+  const hoursLeft = Math.floor(timeDifference / (1000 * 60 * 60));
+  const minutesLeft = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  
+  return { hours: hoursLeft, minutes: minutesLeft };
+}
+
+
 })
