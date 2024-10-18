@@ -19,7 +19,11 @@ def index(request):
         prompt = request.POST.get('prompt')
         name = request.POST.get('name')
         profession = request.POST.get('profession')
-        # Создание объекта CatImage
+        duration = float(request.POST.get('duration'))
+
+        # Проверка duration
+        if duration < 5:
+            return JsonResponse({'error': 'Невозможно отправить форму.'}, status=403)
 
         # Вызов API GenApi
         input_ai = {
