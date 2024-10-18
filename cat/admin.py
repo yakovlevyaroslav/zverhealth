@@ -5,7 +5,7 @@ from cat.models import CatImage
 
 
 class CatImageAdmin(admin.ModelAdmin):
-    list_display = ('image_thumbnail', 'is_public')
+    list_display = ('image_thumbnail', 'name', 'profession', 'is_public')
     list_editable = ('is_public',)
 
     def image_thumbnail(self, obj):

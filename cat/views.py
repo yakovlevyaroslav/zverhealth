@@ -17,6 +17,8 @@ def index(request):
         # Получение файла изображения
         image = request.FILES.get('image')
         prompt = request.POST.get('prompt')
+        name = request.POST.get('name')
+        profession = request.POST.get('profession')
         # Создание объекта CatImage
 
         # Вызов API GenApi
@@ -64,7 +66,7 @@ def index(request):
 
                         # Сохранение отредактированного изображения
                         response = requests.get(edited_image_url, stream=True)
-                        cat_image = CatImage.objects.create()
+                        cat_image = CatImage.objects.create(name=name, profession=profession)
                         cat_image.image.save(f'edited_{cat_image.id}.jpg', response.raw)
                         print(f'Сохранено: {cat_image.image.url}')
                         # Отображение результата на странице
@@ -87,23 +89,14 @@ def index(request):
 
 
 def get_public_images(request):
-    """
-    Эндпоинт для вывода последних 20 публичных картинок.
-    """
+    """Эндпоинт для вывода последних 20 публичных картинок с информацией о них."""
     images = CatImage.objects.filter(is_public=True).order_by('-id')[:20]
-    image_urls = [image.image.url for image in images]
-    return JsonResponse({'images': image_urls})
+    image_data = []
+    for image in images:
+        image_data.append({
+            'url': image.image.url,
+            'name': image.name,
+            'profession': image.profession
+        })
 
-
-def publish(request, cat_image_id):
-    cat_image = CatImage.objects.get(pk=cat_image_id)
-    cat_image.is_published = True
-    cat_image.save()
-    return redirect('gallery')
-
-
-def gallery(request):
-    published_images = CatImage.objects.filter(is_published=True)
-
-    # Отображение галереи
-    return render(request, 'gallery.html', {'published_images': published_images})
+    return JsonResponse({'images': image_data})
