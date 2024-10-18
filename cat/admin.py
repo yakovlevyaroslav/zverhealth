@@ -1,10 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-
+from unfold.admin import ModelAdmin
 from cat.models import CatImage
 
 
-class CatImageAdmin(admin.ModelAdmin):
+class CatImageAdmin(ModelAdmin):
     list_display = ('image_thumbnail', 'name', 'profession', 'is_public')
     list_editable = ('is_public',)
 
