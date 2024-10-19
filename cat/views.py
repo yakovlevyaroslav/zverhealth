@@ -78,15 +78,15 @@ def index(request):
                     elif status == 'error':
                         # Обработка ошибки API
                         logging.error(f'Error processing image: {get_response.json()}')
-                        return render(request, 'index.html', {'error': 'Ошибка обработки изображения'})
+                        return JsonResponse({'error': 'Ошибка обработки изображения'}, status=400)
                 else:
                     # Ошибка при получении статуса
                     logging.error(f'Error getting status: {get_response.status_code}')
-                    return render(request, 'index.html', {'error': 'Ошибка получения статуса'})
+                    return JsonResponse({'error': 'Ошибка получения статуса'}, status=400)
         else:
             # Обработка ошибки
             logging.error(f'Error sending request: {response.status_code}')
-            return render(request, 'index.html', {'error': 'Ошибка обработки изображения'})
+            return JsonResponse({'error': 'Ошибка обработки изображения'}, status=400)
 
     # Отображение страницы загрузки
     return render(request, 'index.html')
