@@ -10,3 +10,5 @@ PG_DB_PASSWORD: str = config('PG_DB_PASSWORD')
 PG_DB_NAME: str = config('PG_DB_NAME')
 
 API_AI_KEY: str = config('API_AI_KEY')
+
+DEBUG: bool = config('DEBUG', default=False, cast=bool)
