@@ -27,7 +27,7 @@ SECRET_KEY = config.DJANGO_SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config.DEBUG
 
-ALLOWED_HOSTS = ['localhost', '91.197.98.107', 'zverhealth.ru', 'www.zverhealth.ru']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '91.197.98.107', 'zverhealth.ru', 'www.zverhealth.ru', 'mail.zverhealth.ru']
 
 
 # Application definition
