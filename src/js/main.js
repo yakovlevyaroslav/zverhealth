@@ -297,7 +297,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (cookieExpiration) {
           // Выводим сообщение с оставшимся временем с помощью alert
-          alert(`Форма недоступна. Попробуйте снова через ${cookieExpiration.hours} часов и ${cookieExpiration.minutes} минут.`);
+          alert(`Форма недоступна. Попробуйте снова через 12 часов.`);
           // Блокируем кнопку отправки
           submitButton.disabled = true;
         } else {
