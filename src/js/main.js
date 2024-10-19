@@ -4,11 +4,11 @@ import lgThumbnail from 'lightgallery/plugins/thumbnail'
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const shareBtnsGenerator = function(namePet, petProfession) {
+  const shareBtnsGenerator = function(namePet, petProfession, imageLink) {
     document.getElementById('shareButton').classList.remove('result__share-btn_unactivate')
 
     // Текст, который нужно вставить в ссылку для шеринга
-    const shareText = `Узнай профессию своего любимца! Мой питомец - ${namePet} работает в должности ${petProfession}`;
+    const shareText = `Узнай профессию своего любимца! Мой питомец - ${namePet} работает в должности ${petProfession}! Только посмотри какой он важный тут -> ${window.location.origin + imageLink}`;
     // Кодируем текст, чтобы он корректно передавался в URL
     const encodedText = encodeURIComponent(shareText);
     // Генерируем ссылку для шеринга
@@ -318,7 +318,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const resultImageLink = resultImage.querySelector('.result__image-link');
     const resultImagePicture = resultImage.querySelector('.result__image-picture');
 
-
     const messageForm = document.getElementById('messageForm')
 
     // Устанавливаем прелоадер как background-image до получения ответа
@@ -358,6 +357,8 @@ document.addEventListener('DOMContentLoaded', function () {
             download: true,
           }
         });
+
+        shareBtnsGenerator(nameInputFinal.value, nameProfessionFinal.value, data.edited_image)
 
         // Установка куки на 12 часов после успешной отправки
         setCookie("formAccess", "blocked", 12);
