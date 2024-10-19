@@ -8,11 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('shareButton').classList.remove('result__share-btn_unactivate')
 
     // Текст, который нужно вставить в ссылку для шеринга
-    const shareText = `Узнай профессию своего любимца! Мой питомец - ${namePet} работает в должности ${petProfession}! Только посмотри какой он важный тут -> ${window.location.origin + imageLink}`;
+    const shareText = `Узнай%20профессию%20своего%20любимца!%20Мой%20питомец%20-%20${namePet}%20работает%20в%20должности%20${petProfession}!%20Только%20посмотри%20какой%20он%20важный%20тут%20->%20${window.location.origin + imageLink}`;
     // Кодируем текст, чтобы он корректно передавался в URL
-    const encodedText = encodeURIComponent(shareText);
+    // const encodedText = encodeURIComponent(shareText);
     // Генерируем ссылку для шеринга
-    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin}&text=${encodedText}`;
+    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin}&text=${shareText}`;
     // Находим элемент, куда будем вставлять ссылку
     const shareButtonTg = document.getElementById('telegramShare');
     // Устанавливаем ссылку в кнопку
