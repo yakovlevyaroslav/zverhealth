@@ -438,7 +438,12 @@
     }
 
     &_preloader {
-      @include bg-cover('../images/preloader.svg');
+      @include bg-cover('../images/result-preloader.svg');
+      pointer-events: none;
+    }
+
+    &_error {
+      @include bg-cover('../images/result-error.svg');
       pointer-events: none;
     }
   }

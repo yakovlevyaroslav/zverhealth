@@ -311,24 +311,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('postForm');
     const formData = new FormData(form);
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
+  
     // Находим элемент изображения
     const resultBlock = document.querySelector('.result');
     const resultImage = document.querySelector('#result__image');
     const resultImageLink = resultImage.querySelector('.result__image-link');
     const resultImagePicture = resultImage.querySelector('.result__image-picture');
-
-    const messageForm = document.getElementById('messageForm')
-
+  
+    const messageForm = document.getElementById('messageForm');
+  
     // Устанавливаем прелоадер как background-image до получения ответа
     resultImageLink.classList.remove('result__image-link_starter');
     resultImageLink.classList.add('result__image-link_preloader');
-
+  
     resultBlock.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
-
+  
     fetch('/', {
         method: 'POST',
         body: formData,
@@ -336,18 +336,24 @@ document.addEventListener('DOMContentLoaded', function () {
           'X-CSRFToken': csrftoken // Добавляем токен в заголовок
         }
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          // Если статус ответа не в диапазоне 200–299, обрабатываем как ошибку
+          throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
+        }
+        return response.json();
+      })
       .then(data => {
         // Получаем URL изображения из JSON-ответа
         const editedImageUrl = data.edited_image;
-
+  
         // Обновляем элемент с изображением 
         resultImageLink.classList.remove('result__image-link_preloader');
-        resultImageLink.setAttribute('href', window.location.origin + editedImageUrl)
-        resultImagePicture.setAttribute('src', window.location.origin + editedImageUrl)
-
+        resultImageLink.setAttribute('href', window.location.origin + editedImageUrl);
+        resultImagePicture.setAttribute('src', window.location.origin + editedImageUrl);
+  
         resultImagePicture.classList.remove('result__image-picture_hidden');
-
+  
         const lightGalleryResultElement = document.getElementById('result__image');
         // Инициализация Lightgallery с опциями
         lightGallery(lightGalleryResultElement, {
@@ -357,15 +363,20 @@ document.addEventListener('DOMContentLoaded', function () {
             download: true,
           }
         });
-
-        shareBtnsGenerator(nameInputFinal.value, nameProfessionFinal.value, data.edited_image)
-
+  
+        shareBtnsGenerator(nameInputFinal.value, nameProfessionFinal.value, data.edited_image);
+  
         // Установка куки на 12 часов после успешной отправки
         setCookie("formAccess", "blocked", 12);
       })
       .catch(error => {
+        // Обрабатываем ошибки (включая ошибки 400 и другие)
         console.error('Ошибка:', error);
-        messageForm.textContent = 'Ошибка при отправке формы, попробуйте еще раз позже.'
+        resultImageLink.classList.remove('result__image-link_preloader');
+        resultImageLink.classList.add('result__image-link_error');
+        resultImagePicture.classList.add('result__image-picture_hidden');
+  
+        messageForm.textContent = 'Ошибка при отправке формы, перезагрузите страницу и попробуйте еще раз позже.';
         messageForm.classList.add('form__message_error');
       });
   }
