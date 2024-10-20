@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zver Health Project</title>
+    <title>Zver Health Project 123</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <!-- <script src="https://smartcaptcha.yandexcloud.net/captcha.js" defer></script> -->
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-48x48.png' %}" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon/favicon.svg' %}" />
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}" />
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
 </head>
 <body>
   <section class="main">
@@ -299,11 +303,6 @@
                 Узнать результат
               </button>
               <div class="form__message" id="messageForm"></div>
-              <!-- <div
-                  id="captcha-container"
-                  class="smart-captcha"
-                  data-sitekey="000-000-000"
-              ></div> -->
             </form>
           </div>
         </div>
@@ -395,7 +394,7 @@
         Делимся
       </div>
       <div class="footer__social">
-        <a href="https://habr.com/share?url=https://example.com&title=Заголовок%20статьи" 
+        <a href="https://habr.com/ru/companies/docdoc/articles/" 
             target="_blank" 
             class="footer__social-item">
           <div class="footer__social-icon footer__social-icon_habr"></div>
@@ -403,7 +402,7 @@
             Хабр
           </div>
         </a>
-        <a href="https://vc.ru/share?url=https://example.com&title=Заголовок%20статьи"
+        <a href="https://vc.ru/sberhealth"
             target="_blank" 
             class="footer__social-item">
           <div class="footer__social-icon footer__social-icon_vc"></div>
@@ -425,19 +424,24 @@
         Звоните нам: <a class="footer__text-link" href="tel:88001003598">8 800 100-35-98</a>
       </div>
       <div class="footer__text">
-        <a class="footer__text-link" href="#" target="_blank">
+        <a class="footer__text-link" 
+            href="https://tm.sberhealth.ru/obrabotkadannyh" 
+            target="_blank"
+            rel="noreferrer">
           Политика обработки персональных данных
         </a> <br> <br>
-        <a class="footer__text-link" href="#" target="_blank">
+        <a class="footer__text-link" 
+            href="https://tm.sberhealth.ru/medlic" 
+            target="_blank"
+            rel="noreferrer">
           Лицензия на медицинскую деятельность
         </a> <br> <br>
-        <a class="footer__text-link" href="#" target="_blank">
+        <a class="footer__text-link" 
+            href="https://tm.sberhealth.ru/rekvizit"
+           target="_blank"
+           rel="noreferrer">
           Реквизиты ООО «ИННОВАЦИОННАЯ МЕДИЦИНА»
-        </a> <br> <br>
-        <!-- <a class="footer__text-link" href="#" target="_blank">
-          Политика обработки данных YandexCaptcha
-        </a>  -->
-        <br> <br> <br>
+        </a> <br> <br> <br>
         <div>
           © SBERHEALTH.RU 2012–2024
         </div>
@@ -458,13 +462,13 @@
     <div class="footer__socials">
       <a class="footer__socials-item footer__socials-item_vk" 
           target="_blank" 
-          href=""></a>
+          href="https://vk.com/sber.health"></a>
       <a class="footer__socials-item footer__socials-item_tg" 
           target="_blank" 
-          href=""></a>
+          href="https://t.me/sber_health"></a>
       <a class="footer__socials-item footer__socials-item_yt" 
           target="_blank" 
-          href=""></a>
+          href="https://www.youtube.com/channel/UCXu192twOLnUV3S_-buA4Pw"></a>
     </div>
     <div class="pet-photo_bottom"></div>
   </footer>
