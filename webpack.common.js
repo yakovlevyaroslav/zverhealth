@@ -25,6 +25,7 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader, 
           'css-loader', 
+          'postcss-loader',
           'sass-loader',
         ],
       },
@@ -39,7 +40,7 @@ module.exports = {
       template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: 'css/[name].[contenthash].css',
     }),
     new CleanWebpackPlugin(),
     new CopyPlugin({
