@@ -7,7 +7,7 @@ module.exports = merge(common, {
   mode: 'production',
   output: {
     // filename: 'main.[contenthash].js',
-    filename: 'js/main-v2.js',
+    filename: 'js/main-v3.js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {

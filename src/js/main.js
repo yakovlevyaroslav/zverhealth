@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const answers = [];
 
     // Проверяем, можно ли отправлять форму
-    const cookieExpiration = getCookieExpirationTime("formAccess");
+    const cookieExpiration = getCookieExpirationTime("formAccessDenied");
 
     if (file.value === '') {
       photoBlock.scrollIntoView({
@@ -391,7 +391,11 @@ document.addEventListener('DOMContentLoaded', function () {
         shareBtnsGenerator(nameProfessionFinal.value, data.edited_image);
   
         // Установка куки на 12 часов после успешной отправки
-        setCookie("formAccess", "blocked", 12);
+        if (getCookie('formAccess') === 'attention') {
+          setCookie("formAccessDenied", "real_blocked", 12);
+        } else {
+          setCookie("formAccess", "attention", 12);
+        }
       })
       .catch(error => {
         // Обрабатываем ошибки (включая ошибки 400 и другие)
