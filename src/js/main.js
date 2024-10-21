@@ -1,22 +1,37 @@
 import lightGallery from 'lightgallery';
-// Plugins
 import lgThumbnail from 'lightgallery/plugins/thumbnail'
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  const shareBtnsGenerator = function(namePet, petProfession, imageLink) {
+  const shareBtnsGenerator = function(petProfession, imageLink) {
     document.getElementById('shareButton').classList.remove('result__share-btn_unactivate')
 
-    // Текст, который нужно вставить в ссылку для шеринга
-    const shareText = `Узнай%20профессию%20своего%20любимца!%20Мой%20питомец%20-%20${namePet}%20работает%20в%20должности%20${petProfession}!%20Только%20посмотри%20какой%20он%20важный%20тут%20->%20${window.location.origin + imageLink}`;
-    // Кодируем текст, чтобы он корректно передавался в URL
-    // const encodedText = encodeURIComponent(shareText);
-    // Генерируем ссылку для шеринга
-    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin}&text=${shareText}`;
-    // Находим элемент, куда будем вставлять ссылку
     const shareButtonTg = document.getElementById('telegramShare');
-    // Устанавливаем ссылку в кнопку
+    const shareButtonVk = document.getElementById('vkShare');
+    const shareCopyText = document.getElementById('copyTextShare');
+
+    const shareText = `Хоть%20у%20него%20и%20лапки,%20но%20мой%20питомец%20${petProfession}!%20(${window.location.origin + imageLink})%20А%20кем%20бы%20мог%20работать%20твой?%20Пройди%20тест%20и%20узнай%20тут%20->%20${window.location.origin}`;
+    const shareTextForCopy = `Хоть у него и лапки, но мой питомец ${petProfession}! (${window.location.origin + imageLink}) А кем бы мог работать твой? Пройди тест и узнай тут -> ${window.location.origin}`;
+
+    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin + imageLink}&text=${shareText}`;
+    const vkShareUrl = `https://vk.com/share.php?url=${window.location.origin}&title=Кто%20твой%20питомец%20в%20IT?&description=${shareText}&image${window.location.origin + imageLink}`;
+
     shareButtonTg.href = telegramShareUrl;
+    shareButtonVk.href = vkShareUrl;
+
+    shareCopyText.addEventListener('click', function() {
+      navigator.clipboard.writeText(shareTextForCopy)
+        .then(() => {
+          copyTextShare.classList.add('result__share-item_copy-done');
+          setTimeout(function() {
+            copyTextShare.classList.remove('result__share-item_copy-done');
+          }, 3500);
+        })
+        .catch(err => {
+          console.error('Ошибка при копировании текста: ', err);
+        });
+    });
+    
   }
 
   let openingTime
@@ -72,13 +87,21 @@ document.addEventListener('DOMContentLoaded', function () {
   const testFileTextInputs = function () {
     if (nameInput.value.trim() !== "" && fileInput.files.length > 0) {
       nameInputBtn.disabled = false;
+      // document.querySelector('.start__title').textContent = 'Отлично, можем начинать!'
+      // document.querySelector('.start').classList.remove('start_pe-none')
     } else {
       nameInputBtn.disabled = true;
+      document.querySelector('.start__title').textContent = 'Сперва добавь изображение и напиши имя питомца!'
+      document.querySelector('.start').classList.add('start_pe-none')
     }
   }
 
   nameInputBtn.addEventListener('click', function (event) {
     event.preventDefault();
+
+    document.querySelector('.start__title').textContent = 'Отлично, можем начинать!'
+    document.querySelector('.start').classList.remove('start_pe-none')
+
     petName = nameInput.value;
     namePet.forEach(function (item) {
       item.textContent = petName ? petName : '';
@@ -364,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function () {
           }
         });
   
-        shareBtnsGenerator(nameInputFinal.value, nameProfessionFinal.value, data.edited_image);
+        shareBtnsGenerator(nameProfessionFinal.value, data.edited_image);
   
         // Установка куки на 12 часов после успешной отправки
         setCookie("formAccess", "blocked", 12);

@@ -193,13 +193,24 @@
 
     .form__name-submit {
       padding: 0;
-      width: 24px;
-      height: 24px;
-      border-radius: 12px;
       background-color: $btn-pink;
       flex-shrink: 0;
       @include bg-contain('../images/vector--arrow.svg');
       background-size: 16px 16px;
+
+      height: 34px;
+      width: 94px;
+      position: absolute;
+      right: 10px;
+      top: calc(50%);
+      transform: translateY(-50%);
+      background-position: 90% 50%;
+      transition-duration: .3s;
+      font-size: 14px;
+      padding-left: 14px;
+      text-align: left;
+      color: $white;
+      border-radius: 6px;
 
       &:hover {
         background-color: darken($btn-pink, 5%);
@@ -207,6 +218,13 @@
 
       &:disabled {
         background-color: $text-gray;
+        width: 24px;
+        height: 24px;
+        transition-duration: .3s;
+        background-position: 50%;
+        font-size: 0;
+        padding: 0;
+        border-radius: 12px;
       }
     }
   }
@@ -223,9 +241,14 @@
 
   .start__title {
     @include font-semibold(28px, 1.3);
-    margin-bottom: 50px;
     color: $btn-pink;
     text-align: center;
+    max-width: 410px;
+    margin: 0 auto 50px;
+  }
+
+  &_pe-none {
+    pointer-events: none;
   }
 }
 
@@ -434,7 +457,7 @@
     border-radius: 13px;
 
     &_starter {
-      @include bg-contain('../images/pet-image--main.png');
+      @include bg-contain('../images/test-pet--6.png');
       pointer-events: none;
     }
 
@@ -556,6 +579,22 @@
 
     .result__share-item_vk {
       @include bg-contain('../images/link--vk.svg')
+    }
+
+    .result__share-item_copy {
+      @include bg-contain('../images/link--share.svg');
+      border: none;
+      background-color: transparent;
+      outline: none;
+      cursor: pointer;
+      font-size: 0;
+      transition-duration: .3s;
+    }
+
+    .result__share-item_copy-done {
+      background-image: none;
+      font-size: 12px;
+      transition-duration: .3s;
     }
 
     .result__share-list_visible {

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zver Health Project 123</title>
+    <meta name="description" content="Подберем IT-профессию для твоего любимца — пройди тест и узнай, кем бы мог работать твой питомец!">
+    <title>Кто твой питомец в IT?</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <link rel="icon" type="image/png" href="{% static 'favicon/favicon-48x48.png' %}" sizes="48x48" />
@@ -45,7 +46,7 @@
         </div>
         <div class="form__name">
           <input type="text" autocomplete="off" class="form__name-input" id="nameInput" placeholder="Имя">
-          <button disabled class="btn form__name-submit" id="nameInputBtn"></button>
+          <button disabled class="btn form__name-submit" id="nameInputBtn">Начать</button>
         </div>
       </div>
 
@@ -68,10 +69,10 @@
     <div class="pet-photo_main"></div>
   </section>
 
-  <section class="start">
+  <section class="start start_pe-none">
     <div class="">
       <div class="start__title">
-        Отлично, можем начинать!
+        Сперва добавь изображение и напиши имя питомца!
       </div>
       <div class="test slides">
         <div class="slide">
@@ -357,9 +358,13 @@
               target="_blank"
                id="telegramShare"
               class="result__share-item result__share-item_tg"></a>
-              <!-- <a href="" 
-              target="_blank" 
-              class="result__share-item result__share-item_vk"></a> -->
+          <a href="" 
+              target="_blank"
+                id="vkShare"
+              class="result__share-item result__share-item_vk"></a>
+          <button id="copyTextShare"
+              class="result__share-item result__share-item_copy">
+            Скопировано</button>
         </div>
       </div>
       <div class="logo"></div>
@@ -369,20 +374,8 @@
     <div class="container">
       <div class="besties__grid" id="besties__grid">
         <div class="besties__grid-list" id="besties__grid-list">
-          <!-- <a class="besties__grid-item besties__grid-item_1" href="https://images.unsplash.com/photo-1709324492299-f1d1f7f8f56d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1709324492299-f1d1f7f8f56d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-          </a>
-          <a class="besties__grid-item besties__grid-item_2" href="https://images.unsplash.com/photo-1727175078650-7cb1a883280d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1727175078650-7cb1a883280d?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-          </a>
-          <a class="besties__grid-item besties__grid-item_3" href="https://plus.unsplash.com/premium_photo-1729017497963-ec4ec3458794?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <img class="besties__grid-image" src="https://plus.unsplash.com/premium_photo-1729017497963-ec4ec3458794?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-          </a>
-          <a class="besties__grid-item besties__grid-item_4" href="https://images.unsplash.com/photo-1728412389947-da908fb5dfff?q=80&w=2880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1728412389947-da908fb5dfff?q=80&w=2880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-          </a>
-          <a class="besties__grid-item besties__grid-item_5" href="https://images.unsplash.com/photo-1728357728879-ac9a5c703c2c?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            <img class="besties__grid-image" src="https://images.unsplash.com/photo-1728357728879-ac9a5c703c2c?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+          <!-- <a class="besties__grid-item besties__grid-item_1" href="">
+            <img class="besties__grid-image" src="" />
           </a> -->
         </div>
       </div>

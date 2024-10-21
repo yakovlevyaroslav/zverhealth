@@ -6,8 +6,8 @@ const path = require('path');
 module.exports = merge(common, {
   mode: 'production',
   output: {
-    // filename: 'bundle.[contenthash].js',
-    filename: 'bundle.js',
+    // filename: 'main.[contenthash].js',
+    filename: 'js/main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   optimization: {
