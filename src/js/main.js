@@ -11,9 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const shareCopyText = document.getElementById('copyTextShare');
 
     const shareText = `Хоть%20у%20него%20и%20лапки,%20но%20мой%20питомец%20${petProfession}!%20(${window.location.origin + imageLink})%20А%20кем%20бы%20мог%20работать%20твой?%20Пройди%20тест%20и%20узнай%20тут%20->%20${window.location.origin}`;
+    const shareTgText = `Хоть%20у%20него%20и%20лапки,%20но%20мой%20питомец%20${petProfession}!%20А%20кем%20бы%20мог%20работать%20твой?%20Пройди%20тест%20и%20узнай%20тут%20->%20${window.location.origin}`;
     const shareTextForCopy = `Хоть у него и лапки, но мой питомец ${petProfession}! (${window.location.origin + imageLink}) А кем бы мог работать твой? Пройди тест и узнай тут -> ${window.location.origin}`;
 
-    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin + imageLink}&text=${shareText}`;
+    const telegramShareUrl = `https://t.me/share/url?url=${window.location.origin + imageLink}&text=${shareTgText}`;
     const vkShareUrl = `https://vk.com/share.php?url=${window.location.origin}&title=Кто%20твой%20питомец%20в%20IT?&description=${shareText}&image${window.location.origin + imageLink}`;
 
     shareButtonTg.href = telegramShareUrl;

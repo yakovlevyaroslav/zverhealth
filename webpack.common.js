@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 module.exports = {
   entry: './src/js/index.js',
   output: {
-    filename: 'main-v1.js',
+    filename: 'main-v2.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
@@ -39,7 +39,7 @@ module.exports = {
       template: './src/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/main-v1.css',
+      filename: 'css/main-v2.css',
     }),
     new CleanWebpackPlugin(),
     new CopyPlugin({
