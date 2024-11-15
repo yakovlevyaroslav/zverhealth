@@ -284,27 +284,27 @@
     }
 
     &_1 {
-      @include bg-contain('../images/test-pet--1.png');
+      @include bg-contain('../images/test-pet--1.svg');
     }
 
     &_2 {
-      @include bg-contain('../images/test-pet--2.png');
+      @include bg-contain('../images/test-pet--2.svg');
     }
 
     &_3 {
-      @include bg-contain('../images/test-pet--3.png');
+      @include bg-contain('../images/test-pet--3.svg');
     }
 
     &_4 {
-      @include bg-contain('../images/test-pet--4.png');
+      @include bg-contain('../images/test-pet--4.svg');
     }
 
     &_5 {
-      @include bg-contain('../images/test-pet--5.png');
+      @include bg-contain('../images/test-pet--5.svg');
     }
 
     &_6 {
-      @include bg-contain('../images/test-pet--6.png');
+      @include bg-contain('../images/test-pet--6.svg');
     }
   }
 
@@ -457,7 +457,7 @@
     border-radius: 13px;
 
     &_starter {
-      @include bg-contain('../images/test-pet--6.png');
+      @include bg-contain('../images/test-pet--6.svg');
       pointer-events: none;
     }
 
@@ -1057,7 +1057,7 @@
 }
 
 .pet-photo_main {
-  @include bg-contain('../images/pet-image--main.png');
+  @include bg-contain('../images/pet-image--main.svg');
   width: 280px;
   height: 280px;
   position: absolute;
@@ -1067,7 +1067,7 @@
 }
 
 .pet-photo_bottom {
-  @include bg-contain('../images/pet-image--footer.png');
+  @include bg-contain('../images/pet-image--footer.svg');
   width: 230px;
   height: 230px;
   position: absolute;

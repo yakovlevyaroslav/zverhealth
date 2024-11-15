@@ -10,7 +10,7 @@ module.exports = merge(common, {
     hot: true,
   },
   output: {
-    filename: 'main-v3.js',
+    filename: 'main-v4.js',
     path: path.resolve(__dirname, 'dist'),
   },
 });
