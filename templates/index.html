@@ -1,12 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Подберем IT-профессию для твоего любимца — пройди тест и узнай, кем бы мог работать твой питомец!">
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:title" content="Кто твой питомец в IT?">
+    <meta property="og:description" content="Подберем IT-профессию для твоего любимца — пройди тест и узнай, кем бы мог работать твой питомец!">
+    <meta property="og:type" content="website">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Кто твой питомец в IT?</title>
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/main-v4.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <link rel="icon" type="image/png" href="{% static 'favicon/favicon-48x48.png' %}" sizes="48x48" />
     <link rel="icon" type="image/svg+xml" href="{% static 'favicon/favicon.svg' %}" />
     <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}" />
@@ -324,18 +335,14 @@
     <div class="container">
       <div class="result__image" id="result__image">
         <a class="result__image-link result__image-link_starter" href="">
-          <img class="result__image-picture result__image-picture_hidden" src="" />
+          <img class="result__image-picture result__image-picture_hidden" src="" alt="Результат теста">
         </a>
         <div class="result__image-snake"></div>
         <div class="result__image-star"></div>
       </div>
       <div class="result__title">
-        <div class="result__title-name pet-name" id="namePet">
-          
-        </div>
-        <div class="result__title-prof" id="profPet">
-          
-        </div>
+        <div class="result__title-name pet-name" id="namePet"></div>
+        <div class="result__title-prof" id="profPet"></div>
       </div>
       <div class="result__text">
         <p class="result__text-info" id="profPetText"></p>
@@ -343,8 +350,7 @@
         <br>
         Помоги своему питомцу откликнуться 
         <a class="result__text-link" target="_blank" href="https://vacancy.sberhealth.ru/">
-          <span>
-            на вакансии СберЗдоровья,</span>
+          <span>на вакансии СберЗдоровья,</span>
           <div></div>
         </a>
         &nbsp;чтобы он мог создавать ветеринарный сервис для своих собратьев. А то у него лапки!
@@ -355,16 +361,20 @@
         </div>
         <div class="result__share-list">
           <a href="" 
-              target="_blank"
-               id="telegramShare"
-              class="result__share-item result__share-item_tg"></a>
+             target="_blank"
+             id="telegramShare"
+             class="result__share-item result__share-item_tg"
+             aria-label="Поделиться в Telegram"></a>
           <a href="" 
-              target="_blank"
-                id="vkShare"
-              class="result__share-item result__share-item_vk"></a>
+             target="_blank"
+             id="vkShare"
+             class="result__share-item result__share-item_vk"
+             aria-label="Поделиться во ВКонтакте"></a>
           <button id="copyTextShare"
-              class="result__share-item result__share-item_copy">
-            Скопировано</button>
+                  class="result__share-item result__share-item_copy"
+                  aria-label="Скопировать ссылку">
+            Скопировано
+          </button>
         </div>
       </div>
       <div class="logo"></div>
@@ -375,7 +385,7 @@
       <div class="besties__grid" id="besties__grid">
         <div class="besties__grid-list" id="besties__grid-list">
           <!-- <a class="besties__grid-item besties__grid-item_1" href="">
-            <img class="besties__grid-image" src="" />
+            <img class="besties__grid-image" src="" alt="Фото питомца" />
           </a> -->
         </div>
       </div>
@@ -388,16 +398,18 @@
       </div>
       <div class="footer__social">
         <a href="https://habr.com/ru/companies/docdoc/articles/" 
-            target="_blank" 
-            class="footer__social-item">
+           target="_blank" 
+           class="footer__social-item"
+           rel="noopener">
           <div class="footer__social-icon footer__social-icon_habr"></div>
           <div class="footer__social-title">
             Хабр
           </div>
         </a>
         <a href="https://vc.ru/sberhealth"
-            target="_blank" 
-            class="footer__social-item">
+           target="_blank" 
+           class="footer__social-item"
+           rel="noopener">
           <div class="footer__social-icon footer__social-icon_vc"></div>
           <div class="footer__social-title">
             VC
@@ -418,21 +430,21 @@
       </div>
       <div class="footer__text">
         <a class="footer__text-link" 
-            href="https://tm.sberhealth.ru/obrabotkadannyh" 
-            target="_blank"
-            rel="noreferrer">
+           href="https://tm.sberhealth.ru/obrabotkadannyh" 
+           target="_blank"
+           rel="noopener">
           Политика обработки персональных данных
         </a> <br> <br>
         <a class="footer__text-link" 
-            href="https://tm.sberhealth.ru/medlic" 
-            target="_blank"
-            rel="noreferrer">
+           href="https://tm.sberhealth.ru/medlic" 
+           target="_blank"
+           rel="noopener">
           Лицензия на медицинскую деятельность
         </a> <br> <br>
         <a class="footer__text-link" 
-            href="https://tm.sberhealth.ru/rekvizit"
+           href="https://tm.sberhealth.ru/rekvizit"
            target="_blank"
-           rel="noreferrer">
+           rel="noopener">
           Реквизиты ООО «ИННОВАЦИОННАЯ МЕДИЦИНА»
         </a> <br> <br> <br>
         <div>
@@ -454,14 +466,20 @@
 
     <div class="footer__socials">
       <a class="footer__socials-item footer__socials-item_vk" 
-          target="_blank" 
-          href="https://vk.com/sber.health"></a>
+         target="_blank" 
+         href="https://vk.com/sber.health"
+         rel="noopener"
+         aria-label="ВКонтакте"></a>
       <a class="footer__socials-item footer__socials-item_tg" 
-          target="_blank" 
-          href="https://t.me/sber_health"></a>
+         target="_blank" 
+         href="https://t.me/sber_health"
+         rel="noopener"
+         aria-label="Telegram"></a>
       <a class="footer__socials-item footer__socials-item_yt" 
-          target="_blank" 
-          href="https://www.youtube.com/channel/UCXu192twOLnUV3S_-buA4Pw"></a>
+         target="_blank" 
+         href="https://www.youtube.com/channel/UCXu192twOLnUV3S_-buA4Pw"
+         rel="noopener"
+         aria-label="YouTube"></a>
     </div>
     <div class="pet-photo_bottom"></div>
   </footer>
